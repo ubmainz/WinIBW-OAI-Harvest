@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                                -->
+<!-- This file contains the dialog for the user to enter the        -->
+<!-- handle of the document that shall be harvested. If the handle  -->
+<!-- is valid the dialog will start the download and writes the     -->
+<!-- result to disk before quitting.                                -->
+<!--                                                                -->
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!-- Edit your repository name in attribute 'title'                -->
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    title="OAI Harvest: OpenScience" 
+    onload="onLoad();" 
+    buttons="accept,cancel"
+    ondialogaccept="return oaiDownload();" 
+    ondialogcancel="return onCancel();"
+    onunload="application.activate();" 
+    style="min-width: 30em; min-height: 10em;" id="item-handle">
+
+    <!-- Configuration informations for the OAI harvest script.         -->
+    <!-- DSpaceConfig.js is used by oaiclient.js and oaidownload.js     -->
+    <!-- Configure the whole harvest script in this file!               -->
+    <script src="DSpaceConfig.js"/>
+    
+    <!-- oaiclient.js contains the connection object to the repository  -->
+    <!-- that should be harvested. It can be configured in Config.OAI.* -->
+    <!-- See DSpaceConfig.js                                            -->
+    <script src="oaiclient.js"/>
+    
+    <!-- oaidownload.js contains the download (harvest) functionality   -->
+    <!-- for the harvest script. It provides the functions onLoad(),    -->
+    <!-- onCancel() and oaiDownload() for this dialog. It is Depending  -->
+    <!-- on oaiclient.js                                                -->
+    <script src="oaidownload.js"/>
+
+    <!-- Edit your dialog header here!                                  -->
+    <dialogheader id="data-import" title="Publikationsdaten importieren"/>
+
+    <spacer height="10"/>
+
+    <vbox>
+        <!-- Edit your input label here! -->
+        <caption label="Bitte geben Sie den Handle der gewünschten Publikation ein:" style="font-weight:bold"/>
+        <hbox>
+            <!-- Edit the handle prefix for your organisation here!            -->
+            <!-- 20.500.12030 represents Johannes Gutenberg-Universität Mainz. -->
+            <label value="                            20.500.12030/" style="width:12em"/>
+            
+            <!-- Inputfield for the user to enter the documents handle. e.g. 1234  -->
+            <!--                                                                   -->
+            <!-- !!!     Don't change the attribute 'id' without changing      !!! -->
+            <!-- !!!        Config.XUL.Nodes.HANDLE in DSpaceConfig.js.        !!! -->
+            <!-- !!!                    They must(!) match.                    !!! -->
+            <!--                                                                   -->
+            <textbox id="handle" cols="10"/>
+        </hbox>
+    </vbox>
+</dialog>
