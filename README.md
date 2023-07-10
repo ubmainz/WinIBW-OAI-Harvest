@@ -9,7 +9,7 @@ The ZDV of University Mainz is rolling out WinIBW as VApp. Please check your org
 
 The newest version "**WinIBW hebis2022**" is installed in the directory:
 
-C:\Users\\*[username]*\AppData\Local\Microsoft\AppV\Client\VFS\D44E0DE6-5863-44AE-AF3A-4956B43A3E16*\APPV_ROOT\WinIBW3 hebis2022\
+C:\Users\\*[username]*\AppData\Local\Microsoft\AppV\Client\VFS\D44E0DE6-5863-44AE-AF3A-4956B43A3E16\APPV_ROOT\WinIBW3 hebis2022\
  
 The files in this repository must be copied into that "root"-directory to install it on a local WinIBW instance.
 
@@ -34,3 +34,5 @@ Therefore select "Standard-Funktionen" in "Kategorien:" and then choose "OAIHarv
 The script can be configured in chrome\ibw\content\xul\\*[WinIBW version]*\DSpaceConfig.js (e.g. URL of the repository to be harvested, or debug mode on/off). The file must be copied into the folder chrome\ibw\content\xul\
 
 The dialog to request a handle from the user can be configured in chrome\ibw\content\xul\getDSpaceItem.xul
+
+
