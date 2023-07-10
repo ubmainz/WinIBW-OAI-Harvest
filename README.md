@@ -31,7 +31,7 @@ Therefore select "Standard-Funktionen" in "Kategorien:" and then choose "OAIHarv
 
 ## Configuration
 
-The script can be configured in chrome\ibw\content\xul\\*[WinIBW version]*\DSpaceConfig.js (e.g. URL of the repository to be harvested, or debug mode on/off). The file must be copied into the folder chrome\ibw\content\xul\
+The script can be configured in chrome\ibw\content\xul\DSpaceConfig.js (e.g. URL of the repository to be harvested, or debug mode on/off).
 
 The dialog to request a handle from the user can be configured in chrome\ibw\content\xul\getDSpaceItem.xul
 
