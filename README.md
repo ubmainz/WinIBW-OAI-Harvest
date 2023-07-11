@@ -35,4 +35,22 @@ The script can be configured in chrome\ibw\content\xul\DSpaceConfig.js (e.g. URL
 
 The dialog to request a handle from the user can be configured in chrome\ibw\content\xul\getDSpaceItem.xul
 
+## Editing the metadata crosswalk process
 
+After downloading metadata from a repository via OAI interface it is saved on disk in [xMetaDissPlus](https://www.dnb.de/DE/Professionell/Sammeln/Unkoerperliche_Medienwerke/_content/xMetaDissPlus_akk.html) format.
+
+The transformation process into [Pica](https://www.hebis.de/arbeitsmaterialien/erfassungsleitfaden/gesamtliste-der-kategorien-in-titelaufnahmen/) format happens in two steps. 
+
+#### Step 1: Transformation via XSLT-Stylesheet
+
+The main transformation step will be executed by an external XSLT-Processor (xmetadissplus/xsltproc.exe) not in WinIBW itself.
+
+Therefore you can edit the XSLT-Stylesheet (xmetadissplus/xmetadissplus2pica.xsl).
+
+The output of this transformation is a textfile that contains the metadata in Pica format.
+
+#### Step 2: Preparation for presentation on screen via JavaScript
+
+For presentation on screen in the WinIBW-Window "CBS Hauptbestand" the Pica format will be read from disk by the read_pica3() function in file scripts/oaiharvest.js
+
+Further editions to the Pica format are made in this function via JavaScript. You may need to edit some proprietary informations about your organisation here.
