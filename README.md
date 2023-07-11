@@ -5,11 +5,11 @@ This repository contains JavaScript / XUL / XSLT Code for WinIBW (> 3.7) applica
 
 ## Installation
 
-This script is for installation on a local WinIBW (3.7 or later) instance on Windows OS.
+This script is for installation on a local **WinIBW** (3.7 or later) instance on Windows OS.
 
-The ZDV of University Mainz is rolling out WinIBW as VApp. Please check your organisations way of installing WinIBW.
+The [ZDV](https://www.zdv.uni-mainz.de/) of University Mainz is rolling out WinIBW as VApp. Please check your organisations way of installing WinIBW.
 
-The newest version "**WinIBW hebis2022**" is installed in the directory:
+The newest version [WinIBW hebis2022](https://www.hebis.de/uploads/2022/06/winibw3.7_hebis2022_V4_2022-10-05.pdf) is installed in the directory:
 
 C:\Users\\*[username]*\AppData\Local\Microsoft\AppV\Client\VFS\D44E0DE6-5863-44AE-AF3A-4956B43A3E16\APPV_ROOT\WinIBW3 hebis2022\
  
