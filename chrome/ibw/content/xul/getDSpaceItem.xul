@@ -29,7 +29,7 @@
     
     <!-- oaidownload.js contains the download (harvest) functionality   -->
     <!-- for the harvest script. It provides the functions onLoad(),    -->
-    <!-- onCancel() and oaiDownload() for this dialog. It is Depending  -->
+    <!-- onCancel() and oaiDownload() for this dialog. It is depending  -->
     <!-- on oaiclient.js                                                -->
     <script src="oaidownload.js"/>
 
