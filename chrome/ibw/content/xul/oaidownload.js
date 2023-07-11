@@ -86,8 +86,12 @@ function onCancel()
         application.messageBox(Title, onCancel, Icon);
     }}
 
-    // Indicate abortion for usage outside of the dialog
-    return application.writeProfileInt(Config.Vars.Section, Config.Vars.HarvestSuccess, 0);
+    /*
+     * Indicate abortion for usage outside of the dialog
+     */
+    with (Config.Vars){
+        return application.writeProfileInt(Section, HarvestSuccess, 0);
+    }
 }
 
 /**
@@ -212,7 +216,9 @@ function oaiDownload()
     /*
      * Indicate success for usage outside of the dialog => Result is written on disk to Config.Files.Download
      */
-    application.writeProfileInt(Config.Vars.Section, Config.Vars.HarvestSuccess, 1);
+    with (Config.Vars){
+        application.writeProfileInt(Section, HarvestSuccess, 1);
+    }
 
     window.close();
 }
