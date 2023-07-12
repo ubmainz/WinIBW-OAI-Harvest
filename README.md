@@ -1,5 +1,5 @@
 # WinIBW-OAI-Harvest
-This repository contains JavaScript / XUL / XSLT Code for WinIBW (> 3.7) application to harvest [OAI](http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm) interfaces via http and transform data from
+This repository contains JavaScript / XUL / XSLT Code for WinIBW (> 3.7) application to harvest [OAI](http://www.openarchives.org/OAI/openarchivesprotocol.html) interfaces via http and transform data from
 [xMetaDissPlus](https://www.dnb.de/DE/Professionell/Sammeln/Unkoerperliche_Medienwerke/_content/xMetaDissPlus_akk.html) format into
 [Pica](https://www.hebis.de/arbeitsmaterialien/erfassungsleitfaden/gesamtliste-der-kategorien-in-titelaufnahmen/) format.
 
