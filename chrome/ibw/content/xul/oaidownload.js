@@ -104,14 +104,14 @@ function onCancel()
 
 function oaiDownload()
 {
+    if (Debug){with (Config.Messages.Debug) {
+        application.messageBox(Title, oaiDownload, Icon);
+    }}
+    
     var handle = "",
         oaiQueryParams = "",
         response = "",
         xMetaDissPlus = "";
-
-    if (Debug){with (Config.Messages.Debug) {
-        application.messageBox(Title, oaiDownload, Icon);
-    }}
 
     /*
      * get handle from user (XUL dialog)
