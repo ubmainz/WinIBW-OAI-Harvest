@@ -208,21 +208,21 @@
 	
     <xsl:template match="dc:identifier">
         <xsl:if test="@xsi:type='urn:nbn'">
-            <xsl:text>2050 </xsl:text>
+            <xsl:text>2050 ##0##</xsl:text>
             <xsl:value-of select="."/>
             <xsl:text>&#xA;</xsl:text>
         </xsl:if>
 	</xsl:template>
 	<xsl:template match="ddb:identifier" mode="_2051">
 		<xsl:if test="@ddb:type='DOI'">
-            <xsl:text>2051 </xsl:text>
+            <xsl:text>2051 ##0##</xsl:text>
             <xsl:value-of select="substring-after(., 'doi.org/')"/>
             <xsl:text>&#xA;</xsl:text>
         </xsl:if>
 	</xsl:template>
 	<xsl:template match="ddb:identifier" mode="_2052">
 		<xsl:if test="@ddb:type='URL'">
-            <xsl:text>2052 </xsl:text>
+            <xsl:text>2052 ##0##</xsl:text>
             <xsl:value-of select="substring-after(., 'handle/')"/>
             <xsl:text>&#xA;</xsl:text>
         </xsl:if>
