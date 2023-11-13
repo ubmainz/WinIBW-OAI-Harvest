@@ -220,13 +220,6 @@
             <xsl:text>&#xA;</xsl:text>
         </xsl:if>
 	</xsl:template>
-	<xsl:template match="ddb:identifier" mode="_2052">
-		<xsl:if test="@ddb:type='URL'">
-            <xsl:text>2052 </xsl:text>
-            <xsl:value-of select="substring-after(., 'handle/')"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:if>
-    </xsl:template>
 
     <xsl:template match="dc:creator/pc:person" mode="_30xx">
             <xsl:text>30</xsl:text>
@@ -412,10 +405,6 @@
     <xsl:template match="ddb:identifier" mode="_4085">
 		<xsl:if test="@ddb:type='DOI'">
             <xsl:text>4085 </xsl:text>
-			<!-- ToDo: Wann trifft das bei uns zu? -->
-			<xsl:if test="not(contains(../dc:rights, 'Lesesaalplatznutzung') or contains(../dc:rights, 'Campuslizenz'))">
-                <xsl:text>##0##</xsl:text>
-            </xsl:if> 
 			<xsl:text>=u </xsl:text>
             <xsl:value-of select="."/>
 			<xsl:text>=x R</xsl:text>
@@ -423,8 +412,7 @@
         </xsl:if>
         <xsl:if test="@ddb:type='URL'">
             <xsl:text>4085 </xsl:text>
-			<!-- ToDo: Wann trifft das bei uns zu? -->
-            <xsl:if test="not(contains(../dc:rights, 'Lesesaalplatznutzung') or contains(../dc:rights, 'Campuslizenz'))">
+            <xsl:if test="starts-with(., 'https://openscience.ub.uni-mainz.de')">
                 <xsl:text>##0##</xsl:text>
             </xsl:if>
 			<xsl:text>=u </xsl:text>
@@ -437,10 +425,6 @@
 	<xsl:template match="dc:identifier" mode="_4085">
 		<xsl:if test="@xsi:type='urn:nbn'">
             <xsl:text>4085 </xsl:text>
-			<!-- ToDo: Wann trifft das bei uns zu? -->
-			<xsl:if test="not(contains(../dc:rights, 'Lesesaalplatznutzung') or contains(../dc:rights, 'Campuslizenz'))">
-                <xsl:text>##0##</xsl:text>
-            </xsl:if>
 			<xsl:text>=u </xsl:text>
             <xsl:value-of select="concat('https://nbn-resolving.org/',.)"/>		
 			<xsl:text>=x R</xsl:text>
