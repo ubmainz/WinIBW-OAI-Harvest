@@ -37,7 +37,6 @@
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:language"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:identifier"/>
 		<xsl:apply-templates select="xMetaDiss:xMetaDiss/ddb:identifier" mode="_2051"/>
-		<xsl:apply-templates select="xMetaDiss:xMetaDiss/ddb:identifier" mode="_2052"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:creator/pc:person" mode="_30xx"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:contributor" mode="_3010"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/thesis:degree/thesis:level" mode="_3110"/>
@@ -336,15 +335,15 @@
                     <xsl:choose>
                         <xsl:when test="position()=1">
                             <xsl:text> ; Betreuer: </xsl:text>
-                            <xsl:value-of select="../dc:contributor/pc:person/pc:name/pc:surName"/>
+                            <xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
                             <xsl:text> </xsl:text>
-                            <xsl:value-of select="../dc:contributor/pc:person/pc:name/pc:foreName"/>
+                            <xsl:value-of select="./pc:person/pc:name/pc:surName"/>
                         </xsl:when>
                         <xsl:when test="not(position()=1)">
                             <xsl:text>, </xsl:text>
-                            <xsl:value-of select="../dc:contributor/pc:person/pc:name/pc:surName"/>
+                            <xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
                             <xsl:text> </xsl:text>
-                            <xsl:value-of select="../dc:contributor/pc:person/pc:name/pc:foreName"/>
+                            <xsl:value-of select="./pc:person/pc:name/pc:surName"/>
                         </xsl:when>
                     </xsl:choose>
                 </xsl:if>
