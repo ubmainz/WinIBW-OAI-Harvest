@@ -42,8 +42,10 @@
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/thesis:degree/thesis:level" mode="_3110"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:creator" mode="_3120"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:contributor" mode="_3120"/>
-        <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:title" mode="_4000"/>
-        <xsl:apply-templates select="xMetaDiss:xMetaDiss/dcterms:extent" mode="_4060"/>
+		<xsl:for-each select="xMetaDiss:xMetaDiss/dc:title">
+		    <xsl:if test="position()=1"><xsl:apply-templates select="." mode="_4000"/></xsl:if>
+        </xsl:for-each>
+		<xsl:apply-templates select="xMetaDiss:xMetaDiss/dcterms:extent" mode="_4060"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dcterms:extent" mode="_4061"/>
         <xsl:apply-templates select="xMetaDiss:xMetaDiss/dc:source" mode="_4070"/>
 		<xsl:apply-templates select="xMetaDiss:xMetaDiss/ddb:identifier" mode="_4085"/>
@@ -279,78 +281,87 @@
     </xsl:template>
     
     <xsl:template match="dc:title" mode="_4000">
-        <xsl:if test="not(@ddb:type='translated')">
-            <xsl:text>&#xA;4000 </xsl:text>
-            <xsl:call-template name="non-sorting-articles">
-                <xsl:with-param name="title">
-				<xsl:if test="not(contains(., ' : '))">
-				<xsl:value-of select="normalize-space(.)"/>
-				</xsl:if>
-				<xsl:if test="contains(., ' : ')">
-					<xsl:value-of select="substring-before(., ' : ')"/>
-					<xsl:text> : </xsl:text>
-					<xsl:value-of select="substring-after(., ' : ')"/>
-                 </xsl:if>
+		<xsl:for-each select="../dc:title">
+			<xsl:if test="not(@ddb:type='translated')">
+				<xsl:choose>
+					<xsl:when test="position()=1">
+						<xsl:text>&#xA;4000 </xsl:text>
+					</xsl:when>
+					<xsl:when test="not(position()=1)">
+						<xsl:text> = </xsl:text>
+					</xsl:when>
+				</xsl:choose>
 				
-                </xsl:with-param>
-			 </xsl:call-template>
-			
-            <xsl:text></xsl:text>
-            <xsl:if test="../dcterms:alternative[not(@ddb:type='translated')]">
-                <xsl:text> : </xsl:text>
-                <xsl:value-of
-                    select="normalize-space(../dcterms:alternative[not(@ddb:type='translated')])"/>
-            </xsl:if>
-			
-            <xsl:if test="../dc:creator/pc:person">
-				<xsl:text> / </xsl:text>
-			</xsl:if> 
-			
-            <xsl:for-each select="../dc:creator">
-                <xsl:choose>
-                    <xsl:when test="@xsi:type='pc:MetaPers'">
-                        <xsl:choose>
-                            <xsl:when test="pc:person/pc:name/pc:personEnteredUnderGivenName">
-                                <xsl:value-of
-                                    select="pc:person/pc:name/pc:personEnteredUnderGivenName"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="pc:person/pc:name/pc:foreName"/>
-                                <xsl:text> </xsl:text>
-                                <xsl:value-of select="pc:person/pc:name/pc:surName"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="."/>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <xsl:if test="position()!=last()">
-                    <xsl:text>, </xsl:text>
-                </xsl:if>
-            </xsl:for-each>
-            
-            <xsl:for-each select="../dc:contributor">
-                <xsl:if test="../dc:contributor/@thesis:role='advisor'">
-                    <xsl:choose>
-                        <xsl:when test="position()=1">
-                            <xsl:text> ; Betreuer: </xsl:text>
-                            <xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
-                            <xsl:text> </xsl:text>
-                            <xsl:value-of select="./pc:person/pc:name/pc:surName"/>
-                        </xsl:when>
-                        <xsl:when test="not(position()=1)">
-                            <xsl:text>, </xsl:text>
-                            <xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
-                            <xsl:text> </xsl:text>
-                            <xsl:value-of select="./pc:person/pc:name/pc:surName"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:if>
-            </xsl:for-each>
-            
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:if>
+				<xsl:call-template name="non-sorting-articles">
+					<xsl:with-param name="title">
+					<xsl:if test="not(contains(., ' : '))">
+					<xsl:value-of select="normalize-space(.)"/>
+					</xsl:if>
+					<xsl:if test="contains(., ' : ')">
+						<xsl:value-of select="substring-before(., ' : ')"/>
+						<xsl:text> : </xsl:text>
+						<xsl:value-of select="substring-after(., ' : ')"/>
+					</xsl:if>
+					
+					</xsl:with-param>
+				</xsl:call-template>
+				
+				<xsl:text></xsl:text>
+				<xsl:if test="../dcterms:alternative[not(@ddb:type='translated')]">
+					<xsl:text> : </xsl:text>
+					<xsl:value-of select="normalize-space(../dcterms:alternative[not(@ddb:type='translated')])"/>
+				</xsl:if>
+				
+				<xsl:if test="../dc:creator/pc:person">
+					<xsl:text> / </xsl:text>
+				</xsl:if> 
+				
+				<xsl:for-each select="../dc:creator">
+					<xsl:choose>
+						<xsl:when test="@xsi:type='pc:MetaPers'">
+							<xsl:choose>
+								<xsl:when test="pc:person/pc:name/pc:personEnteredUnderGivenName">
+									<xsl:value-of
+										select="pc:person/pc:name/pc:personEnteredUnderGivenName"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="pc:person/pc:name/pc:foreName"/>
+									<xsl:text> </xsl:text>
+									<xsl:value-of select="pc:person/pc:name/pc:surName"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="."/>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:if test="position()!=last()">
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+				</xsl:for-each>
+				
+				<xsl:for-each select="../dc:contributor">
+					<xsl:if test="../dc:contributor/@thesis:role='advisor'">
+						<xsl:choose>
+							<xsl:when test="position()=1">
+								<xsl:text> ; Betreuer: </xsl:text>
+								<xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
+								<xsl:text> </xsl:text>
+								<xsl:value-of select="./pc:person/pc:name/pc:surName"/>
+							</xsl:when>
+							<xsl:when test="not(position()=1)">
+								<xsl:text>, </xsl:text>
+								<xsl:value-of select="./pc:person/pc:name/pc:foreName"/>
+								<xsl:text> </xsl:text>
+								<xsl:value-of select="./pc:person/pc:name/pc:surName"/>
+							</xsl:when>
+						</xsl:choose>
+					</xsl:if>
+				</xsl:for-each>
+				
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:text>&#xA;</xsl:text>
     </xsl:template>
     
     <xsl:template match="dc:publisher" mode="_4030">
