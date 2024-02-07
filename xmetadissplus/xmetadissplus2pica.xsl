@@ -139,7 +139,7 @@
 				<xsl:text>$e</xsl:text>
                 <xsl:value-of select="thesis:degree/thesis:grantor/cc:universityOrInstitution/cc:name"/>
 				<xsl:text>$f</xsl:text>
-				<xsl:value-of select="substring(dcterms:issued, 0, 5)"/>
+				<xsl:value-of select="substring(dcterms:dateAccepted, 0, 5)"/>
                 <xsl:text>&#xA;</xsl:text>
         </xsl:if>
     </xsl:template>
