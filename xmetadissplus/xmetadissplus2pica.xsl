@@ -73,7 +73,7 @@
     <xsl:template match="dc:type">
         <xsl:if test="@xsi:type='dini:PublType'">
            <xsl:choose>
-                <xsl:when test="../dc:type/.='article' or ../dc:type/.='bookPart' or ../dc:type/.='preprint' or ../dc:type/.='review' or ../dc:type/.='contributionToPeriodical'">
+                <xsl:when test="../dc:type/.='Article' or ../dc:type/.='BookPart'">
                     <xsl:text>0500 Oou &#xA;</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -104,7 +104,7 @@
 			<xsl:text>4204 </xsl:text>
                 <xsl:text>$d</xsl:text>
                 <xsl:choose>
-                    <xsl:when test="dc:type='doctoralThesis'">
+                    <xsl:when test="dc:type='PhDThesis'">
 					    <xsl:if test="contains(thesis:degree/thesis:level, 'doctoral')">
 						<xsl:text>Dissertation</xsl:text>
                         </xsl:if>
@@ -118,7 +118,7 @@
                     <xsl:when test="dc:type='bachelorThesis'">
                         <xsl:text>Bachelorarbeit</xsl:text>
                     </xsl:when>
-                    <xsl:when test="dc:type/.='masterThesis'">
+                    <xsl:when test="dc:type/.='MasterThesis'">
                         <xsl:if test="contains(thesis:degree/thesis:level, 'M.A.')">
 						<xsl:text>Magisterarbeit</xsl:text>
                         </xsl:if>
@@ -146,6 +146,7 @@
 
 	<xsl:template match="ddb:licence" mode="_422x">
 		<xsl:if test="@ddb:licenceType='cc'">
+			<!-- Abwaertskompatibilitaet -->
 			<xsl:if test=".='CC BY'">
 				<xsl:text>4228 Namensnennung 4.0 International$fCC BY 4.0$uhttps://creativecommons.org/licenses/by/4.0/$qDE-77$2cc</xsl:text>
 			</xsl:if>
@@ -164,6 +165,34 @@
 			<xsl:if test=".='CC BY-NC-ND'">
 				<xsl:text>4228 Namensnennung - Nicht kommerziell - Keine Bearbeitungen 4.0 International$fCC BY-​NC-ND 4.0$uhttps://creativecommons.org/licenses/by-​nc-nd/4.0/$qDE-77$2cc</xsl:text>
 			</xsl:if>
+			<xsl:if test=".='CC-PDDC'">
+				<xsl:text>4228 Public Domain Mark 1.0$fPDM 1.0$uhttps://creativecommons.org/publicdomain/mark/1.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC0'">
+				<xsl:text>4228 CC0 1.0 Universell$fCC0 1.0$uhttps://creativecommons.org/publicdomain/zero/1.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<!-- Neue DNB Norm (DINI) -->
+			<xsl:if test=".='CC-BY-4.0'">
+				<xsl:text>4228 Namensnennung 4.0 International$fCC BY 4.0$uhttps://creativecommons.org/licenses/by/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC-BY-SA-4.0'">
+				<xsl:text>4228 Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International$fCC BY-SA 4.0$uhttps://creativecommons.org/licenses/by-sa/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC-BY-NC-4.0'">
+				<xsl:text>4228 Namensnennung - Nicht kommerziell 4.0 International$fCC BY-NC 4.0$uhttps://creativecommons.org/licenses/by-nc/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC-BY-ND-4.0'">
+				<xsl:text>4228 Namensnennung - Keine Bearbeitungen 4.0 International$fCC BY-ND 4.0$uhttps://creativecommons.org/licenses/by-nd/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC-BY-NC-SA-4.0'">
+				<xsl:text>4228 Namensnennung - Nicht kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International$fCC BY-​NC-SA 4.0$uhttps://creativecommons.org/licenses/by-​nc-sa/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC-BY-NC-ND-4.0'">
+				<xsl:text>4228 Namensnennung - Nicht kommerziell - Keine Bearbeitungen 4.0 International$fCC BY-​NC-ND 4.0$uhttps://creativecommons.org/licenses/by-​nc-nd/4.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='CC0-1.0'">
+				<xsl:text>4228 CC0 1.0 Universell$fCC0 1.0$uhttps://creativecommons.org/publicdomain/zero/1.0/$qDE-77$2cc</xsl:text>
+			</xsl:if>
 			<xsl:text>&#xA;</xsl:text>
 		</xsl:if>
 
@@ -174,6 +203,9 @@
 			</xsl:if>
 			<xsl:if test=".='InCopyright'">
 				<xsl:text>Urheberrechtsschutz 1.0$uhttps://rightsstatements.org/vocab/InC/1.0/$qDE-77$2rs</xsl:text>
+			</xsl:if>
+			<xsl:if test=".='In Copyright - Educational Use Permitted'">
+				<xsl:text>Urheberrechtsschutz - Nutzung zu Bildungszwecken erlaubt 1.0$uhttps://rightsstatements.org/vocab/InC-​EDU/1.0/$qDE-77$2rs</xsl:text>
 			</xsl:if>
 			<xsl:text>&#xA;</xsl:text>
 	    </xsl:if>
@@ -475,7 +507,7 @@
         <xsl:text>$d</xsl:text>
         
         <xsl:choose>
-            <xsl:when test=".='doctoralThesis'">
+            <xsl:when test=".='PhDThesis'">
                 <xsl:text>Dissertation</xsl:text>
             </xsl:when>
             <xsl:when test=".='StudyThesis'">
@@ -484,7 +516,7 @@
             <xsl:when test="thesis:level/.='bachelor'">
                 <xsl:text>Bachelorarbeit</xsl:text>
             </xsl:when>
-            <xsl:when test="../dc:type/.='masterThesis'">    
+            <xsl:when test="../dc:type/.='MasterThesis'">
                 <xsl:text>Magisterarbeit</xsl:text>
             </xsl:when>
             <xsl:when test="../dc:type/.='ElectronicThesisandDissertation'">
