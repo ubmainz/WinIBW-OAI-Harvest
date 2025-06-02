@@ -204,6 +204,9 @@
 			<xsl:if test=".='InCopyright'">
 				<xsl:text>Urheberrechtsschutz 1.0$uhttps://rightsstatements.org/vocab/InC/1.0/$qDE-77$2rs</xsl:text>
 			</xsl:if>
+			<xsl:if test=".='InC-1.0'">
+				<xsl:text>Urheberrechtsschutz 1.0$uhttps://rightsstatements.org/vocab/InC/1.0/$qDE-77$2rs</xsl:text>
+			</xsl:if>
 			<xsl:if test=".='In Copyright - Educational Use Permitted'">
 				<xsl:text>Urheberrechtsschutz - Nutzung zu Bildungszwecken erlaubt 1.0$uhttps://rightsstatements.org/vocab/InC-​EDU/1.0/$qDE-77$2rs</xsl:text>
 			</xsl:if>
