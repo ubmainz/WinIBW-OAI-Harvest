@@ -148,7 +148,6 @@ function read_pica3(tmpName)
                 if(zeile.substr(0,5)== "3010 ") str3010 = zeile.substr(5);
                 if(zeile.substr(0,5)== "4000 ") {
 
-                    zeile = zeile.replace(" ; "," : ")
                     titel = zeile.substr(5)
                     titel = titel.replace("@", "")
 
